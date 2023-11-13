@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(
+    0deg,
+    #29272b,
+    #6d6c70
+  );
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+}
+
+/* styling the outer music container */
+.music-container {
+  background-color: #efefef;
+  box-shadow: inset -1px -1px 5px rgba(33,33,33, 0.5), inset 1px 1px 5px rgba(33,33,33,0.5); 
+  display: flex;
+  padding: 20px 30px;
+  position: relative;
+  margin: 100px 0;
+  z-index: 10;
+}
+
+.img-container {
+  position: relative;
+  width: 110px;
+}
+
+/* styling the image to look like a disc by placing a small circle in it*/
+.img-container::after {
+  content: '';
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%);
+}
+
+/* using animation to make the image rotate continiously when music is playing */
+.img-container img {
+  border-radius: 50%;
+  object-fit: cover;
+  height: 110px;
+  width: inherit;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: rotate 3s linear infinite;
+
+  animation-play-state: paused;
+}
+
+/* making sure the image rotates only when the music is playing */
+.music-container.play .img-container img {
+  animation-play-state: running;
+}
+
+/* creating the animation keyframe and setting the image to rotate 360 degrees continiously */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* styling the navigation buttons */
+.action-btn {
+  border: 0;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.action-btn.action-btn-big {
+  font-size: 30px;
+  outline: none;
+}
+
+.action-btn:focus {
+  outline: 0;
+}
+
+/* styling the music-info div by placing it under the music container */
+.music-info {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: calc(100% - 40px);
+  padding: 10px 10px 10px 150px;
+  opacity: 0;
+  transform: translateY(0%);
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  z-index: 0;
+}
+
+/* making the music info pop up when the music playing using the transform property*/
+.music-container.play .music-info {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+.music-info h4 {
+  margin: 0;
+}
+
+/* styling the song progress container */
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  height: 4px;
+  width: 100%;
+}
+
+/* styling the actual progress bar and making it flow along with the song*/
+.progress {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+header {
+  background-color: #ccc;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+
+section {
+  display: -webkit-flex;
+  height: 1500px;
+  font-size: 20px;
+  display: flex;
+}
+
+
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+
+.footer {
+  height: 100px;
+  background-color: #343a40 !important;
+  padding: 0px;
+}
+
+.copyright {
+  padding-left: 300px;
+  line-height: 100px;
+  display: inline;
+  color: #fff;
+}
+
+.footer-menu {
+  line-height: 100px;
+  float: right;
+  margin: 0px;
+  padding-right: 300px;
+}
+
+.footer-menu li {
+  list-style: none;
+  float: left;
+  margin-right: 1em;
+}
+
+.fas,
+.fab {
+  color: #fff;
+}
+
+a {
+  color: black;
+}
+
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid rgb(226, 179, 179);
+  float: left;
+  width: 250px;
+  height: 200px;
+}
+
+div.gallery:hover {
+  border: 3px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 80%;
+}
+
+.ranking {
+  /* margin-top: 60px; */
+  width: 2%;
+  float: left;
+  height: 500px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 19px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: rgba(143, 143, 143, 1);
+}
+
+.popularList {
+  width: 2%;
+  float: left;
+  height: 500px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #464646;
+}
+
+.list-group-item {
+  text-align: left;
+  background-color: rgba(143, 143, 143, 1);
+  border: 0px;
+  width: 506px;
+}
+
+.list-group {
+  width: 100%;
+  margin: auto;
+}
+
+.list-group-number {
+  display: inline-block;
+  width: 1px;
+  /* margin-right: 0px; */
+  text-align: center;
+}
+
+.list-group-img {
+  display: inline-block;
+  width: 80px;
+  margin: 0px 30px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+
+.list-group-name {
+  display: inline-block;
+  width: 140px;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.list-group-play {
+  display: inline-block;
+  margin-top: 0px;
+  width: 100px;
+  text-align: right;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.nav-link {
+  color: #FFF;
+}
+
+.row {
+  text-align: center;
+}
+
+#Sidebar {
+  width: 30%;
+  float: left;
+  height: 600px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #464646;
+}
+
+#popularSong {
+  width: 30%;
+  float: right;
+  height: 600;
+  text-align: center;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.438);
+}
+
+#player {
+  width: 500px;
+  /* margin: 200px auto; */
+  position: fixed;
+  right: 0;
+  top: 83%;
+}
+
+
+/* img{
+  position: absolute;
+  clip:rect(10px,1000px,200px,20px);
+} */
+/* .img-demo img{
+  position:absolute;　
+  /* clip : rect(20px 200px 100px 30px); */
+/* } */
+
+@media (max-width: 600px) {
+  section {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+  }
+}
+
+.rec-song-url:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+#add {
+  padding: 0;
+  border: none;
+  background: none;
+}

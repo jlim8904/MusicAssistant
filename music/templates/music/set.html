@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.css"> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vpplayer.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.1.min.j' %}s"></script>
+    <!-- <script type="text/javascript" src="./js/bootstrap.js"></script> -->
+    <script type="text/javascript" src="{% static 'lib/vpplayer.js' %}"></script>
+    <script src="https://kit.fontawesome.com/eafbf46871.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    header {
+        background-color: #ccc;
+        text-align: center;
+        font-size: 20px;
+        color: white;
+    }
+
+
+    section {
+        display: -webkit-flex;
+        height: 1500px;
+        font-size: 20px;
+        display: flex;
+    }
+
+
+    nav {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        background: #ccc;
+        padding: 20px;
+    }
+
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+
+    article {
+        -webkit-flex: 3;
+        -ms-flex: 3;
+        flex: 3;
+        background-color: #f1f1f1;
+        padding: 10px;
+    }
+
+
+    .footer {
+            height: 100px;
+            background-color: #343a40!important;
+            padding: 0px;
+            
+        }
+
+        .copyright {
+            padding-left: 300px;
+            line-height: 100px;
+            display: inline;
+            color: #fff;
+        }
+
+        .footer-menu {
+            line-height: 100px;
+            float: right;
+            margin: 0px;
+            padding-right: 300px;
+        }
+
+        .footer-menu li {
+            list-style: none;
+            float: left;
+            margin-right: 1em;
+        }
+
+    .fas,
+    .fab {
+        color: #fff;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+
+    div.gallery {
+        margin: 5px;
+        border: 1px solid rgb(226, 179, 179);
+        float: left;
+        width: 250px;
+        height: 200px;
+    }
+
+    div.gallery:hover {
+        border: 3px solid #777;
+    }
+
+    div.gallery img {
+        width: 100%;
+        height: 80%;
+    }
+
+    .ranking {
+        width: 2%;
+        float: left;
+        height: 500px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #302e2e;
+    }
+
+    .popularList {
+        width: 2%;
+        float: left;
+        height: 500px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #7a7676;
+    }
+
+    .list-group-item {
+        text-align: left;
+        /* background-color: #302e2e; */
+        /* border: 1px solid #ccc; */
+    }
+
+    div.desc {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .nav-link {
+        color: #FFF;
+    }
+
+    .row {
+        text-align: center;
+        margin: 0px;
+    }
+
+    #Sidebar {
+        width: 30%;
+        float: left;
+        height: 500px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #464646;
+    }
+
+    #popularSong {
+        width: 30%;
+        float: right;
+        height: 500px;
+        text-align: center;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0.438);
+    }
+
+    .dui-container {
+        position: relative;
+        min-height: 100%;
+    }
+
+    #BoxText1 {
+        /* border:5px orange solid; */
+        border-radius: 10px;
+        background-color: #ccc;
+        padding: 30px 50px;
+        width: 400px;
+        margin: 60px 70px;
+    }
+
+    #body {
+        width: 90%;
+        height: 600px;
+        ;
+        text-align: left;
+        font-size: 15px;
+        color: black;
+        /* font-weight:bold; */
+        background-color: #fffaf3;
+        float: center;
+        padding: 30px 50px;
+        /* padding-left: 3%; */
+    }
+
+    @media (max-width: 600px) {
+        section {
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+    }
+
+    .rec-song-url:hover {
+        color: #ccc;
+        text-decoration: none;
+    }
+
+    #player {
+        width: 500px;
+        /* margin: 200px auto; */
+        position: fixed;
+        right: 0;
+        top: 83%;
+    }
+
+    .list-inline-item {
+        margin: 5px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .list-inline-item a:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .list-group {
+        width: 90%;
+        margin: auto;
+    }
+
+    .list-group-number {
+        display: inline-block;
+        width: 30px;
+        text-align: center;
+    }
+
+    .list-group-img {
+        display: inline-block;
+        width: 80px;
+        margin: 0px 30px;
+        text-align: center;
+    }
+
+    .list-group-author {
+        display: inline-block;
+        width: 200px;
+        text-align: center;
+    }
+
+    .list-group-name {
+        display: inline-block;
+        width: 200px;
+        text-align: center;
+    }
+
+    .list-group-play {
+        display: inline-block;
+        width: calc(100% - 600px);
+        text-align: right;
+    }
+
+    .nav-link {
+        color: #000;
+    }
+
+    .form-control {
+        width: 400px;
+    }
+
+    .control-label {
+        font-size: 14pt;
+    }
+
+    label {
+        font-size: 14pt;
+    }
+</style>
+<!-- </head> -->
+<script>
+    $(document).ready(function () {
+        $("#player").vpplayer({
+            src: "{% static 'audio/audio.mp3' %}",
+            trackName: "sample audio",
+            preloadMessage: "LOADING...",
+            playerColor: "black,grey",
+            displayColor: "grey",
+            view: "basic",
+        });
+    });
+
+</script>
+
+<body>
+
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand" style="color: #FFF">音樂小助手</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'musicweb' %}" style="color: #FFF">主頁<span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'category' %}" style="color: #FFF">歌曲分類</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mySongList' %}" style="color: #FFF">我的歌單</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statistics' %}" style="color: #FFF">歌曲愛好統計</a>
+                    </li>
+                </ul>
+                <form class="d-flex ml-auto">
+                    <input style="margin:5px" class="form-control me-2" type="search" placeholder="搜尋"
+                        aria-label="Search">
+                    <!-- <a href="{% url 'search' %}"> 
+                        <button style="margin:5px;" class="btn btn-outline-success" type="submit">Go</button>
+                    </a> -->
+                    <input type="button" style="margin: 5px;" class="btn btn-outline-success" value="Go"onclick="javascript:window.location.href='{% url 'search' %}'" />
+
+                </form>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
+                        <img id="img" style="border-radius:50%;margin:1px;" class="style-scope yt-img-shadow "
+                            alt="顯示圖片" height="32" width="32" src="{% static 'pic/wtm.jpg' %}">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg-right">
+                        <a class="dropdown-item" href="{% url 'profile' %}">個人頁面</a>
+                        <a class="dropdown-item" href="{% url 'set' %}">帳號設定</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">登出</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="row" style="padding-bottom: 20%;">
+        <div class="col-4">
+            <div id="BoxText1">
+                <div class="border-block mb-4">
+
+                    <h2 class="mb-4">會員資料</h2>
+                    <div role="tablist">
+                        <ul class="nav nav-pills flex-column ">
+
+
+                            <li class="list-inline-item">
+                                <a id="basic" class="nav-link active"
+                                    style="border: 1px solid #000; border-radius: 5px;" data-toggle="list"
+                                    href="#basic-content">基本資料</a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a id="mail" class="nav-link" style="border: 1px solid #000; border-radius: 5px;"
+                                    data-toggle="list" href="#mail-content">電子郵件</a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a id="phone" class="nav-link" style="border: 1px solid #000; border-radius: 5px;"
+                                    data-toggle="list" href="#phone-content">手機號碼</a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <a id="social" class="nav-link" style="border: 1px solid #000; border-radius: 5px;"
+                                    data-toggle="list" href="#social-content">社群帳號綁定</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-8" style="margin-top: 60px; padding-left: 5%;">
+            <div id="body">
+
+                <div class="tab-content">
+                    <div id="basic-content" class="tab-pane active" role="tabpanel">
+                        <div class="border-block mb-4">
+                            <h2 class="mb-4">基本資料</h2>
+                            <label>暱稱（顯示名稱）</label>
+                            <input type="text" name="nickname" value="yang" class="form-control" maxlength="40"
+                                required="" id="id_nickname">
+                            <hr class="mt-4 mb-4">
+                            <label style="width: 100%; ">地區</label>
+                            <p>
+                                <select name="">
+                                    <option value="">台灣</option>
+                                    <option value="">海外</option>
+                                    <option value="">中國</option>
+                                </select>
+                            </p>
+                            <hr class="mt-4 mb-4">
+                            <label>生日</label>
+                            <form>
+                                <div>
+                                    <label for="bday">Enter your birthday:</label>
+                                    <input type="date" id="bday" name="bday" required
+                                        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                    <span class="validity"></span>
+                                </div>
+                                <div>
+                                    <input type="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="mail-content" class="tab-pane" role="tabpanel">
+                        <div class="border-block mb-4">
+                            <h2 class="mb-4">電子郵件</h2>
+                            <div class="form-group"><label>電子郵件地址</label>
+                                <p>(顯示已經設定過的)
+                                </p>
+
+                            </div>
+                            <form class="maxw-600p">
+                                <input type="hidden">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_email">新的電子郵件地址</label>
+                                    <input class="form-control" id="id_email" name="email" required="required"
+                                        type="text" value="">
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="id_emailconf">再輸入一次</label>
+                                    <input class="form-control" id="id_emailconf" name="emailconf" required="required"
+                                        type="text" value="">
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">儲存變更</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="phone-content" class="tab-pane" role="tabpanel">
+                        <div class="border-block mb-4">
+                            <h2 class="mb-4">變更手機號碼</h2>
+                            <div class="form-group"><label>原手機號碼</label>
+                                <p>(顯示已經設定過的)
+                                </p>
+
+                            </div>
+                            <form class="maxw-600p">
+                                <input type="hidden">
+                                <div class="form-group">
+                                    <label class="control-label" for="id_email">新的手機號碼</label>
+                                    <input class="form-control" id="id_email" name="email" required="required"
+                                        type="text" value="">
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="id_emailconf">再輸入一次</label>
+                                    <input class="form-control" id="id_emailconf" name="emailconf" required="required"
+                                        type="text" value="">
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">儲存變更</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="social-content" class="tab-pane" role="tabpanel">
+                        <div class="border-block mb-6">
+                            <h2 class="mb-4">社群帳號綁定</h2>
+
+                            <ul class="list-group list-group-flush mb-5 text-break">
+                                <li class="list-group-item d-lg-flex align-items-center">
+                                    <div class="mr-4">
+                                        <img src="{% static 'pic/icon-fb.svg' %}" class="w-24p">
+                                    </div>
+                                    <div class="mr-4">
+                                        <span class="font-size-sm text-gray">Facebook</span>
+                                        <h4>
+                                            用戶名稱
+                                        </h4>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary active ml-auto ">解除綁定</button>
+
+                                </li>
+
+
+
+                                <li class="list-group-item d-lg-flex align-items-center">
+                                    <div class="mr-4">
+                                        <img src="{% static 'pic/icon-twitter.svg' %}" class="w-24p">
+                                    </div>
+                                    <div class="mr-4">
+                                        <span class="font-size-sm text-gray">Twitter</span>
+                                        <h4 class="text-muted">
+                                            未綁定
+                                        </h4>
+                                    </div>
+
+                                    <a href="" class="btn btn-primary ml-auto">綁定帳號</a>
+
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- <div id="player"></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <footer>
+        <div class="footer">
+            <div class="copyright">Copyright © 2021 MusicWeb All Rights Reserved.</div>
+            <ul class="footer-menu">
+                <li><a href="#"><i class="fas fa-globe-americas"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
